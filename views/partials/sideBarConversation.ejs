@@ -188,7 +188,7 @@
             10) { lastMessage = lastMessage.substr(0,10)+"..." } %>
             <div class="position-relative conversation-container">
                <a
-                  class="chat-item d-flex pl-3 pr-0 pt-3 pb-3"
+                  class="chat-item <%= conversation._id.equals(con._id) ? 'active' : '' %> d-flex pl-3 pr-0 pt-3 pb-3"
                   href="/conversation/<%= con._id %>"
                >
                   <div class="w-100">
