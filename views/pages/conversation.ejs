@@ -155,12 +155,15 @@
       socket.on("getOnlineUser", function (data) {
          $("#"+data.user_id + "_status").addClass("active")
       })
-
+      socket.on("createRoom", function (data) {
+         socket.emit("joinRoom",'<%= conversation._id %>')
+      })
+      
       socket.on("getOfflineUser", function (data) {
          $("#"+data.user_id + "_status").removeClass("active")
       })
 
-      socket.emit("joinRoom",'<%= conversation._id %>')
+      
       
       $("#chat-form").submit(function (event) {
          event.preventDefault();
@@ -172,7 +175,9 @@
             success: function(data) {
                if(data.success){
                   $("#input-message").val('')
-                  
+                  $('.emojionearea-editor').html("")
+                  $('#last-con-<%= conversation._id %> span:first-child').text("Bạn: ")
+                  $('#last-con-<%= conversation._id %> span:last-child').text(message)
                   if(data.message.sender == '<%= user._id %>'){
                      let html = `
                      <div class="d-flex flex-row-reverse mb-2">
@@ -381,6 +386,8 @@
                      </div>
                      `
                      $("#message-container").append(html)
+                     
+                     $('#last-con-<%= conversation._id %> span:last-child').text(data.message)
                   } else {
                      let html = `
                      <div class="left-chat-message fs-13 mb-2">
@@ -390,6 +397,8 @@
                      </div>
                      `
                      $("#message-container").append(html)
+                     $('#last-con-<%= conversation._id %> span:first-child').text("")
+                     $('#last-con-<%= conversation._id %> span:last-child').text(data.message)
                   }
       })
       function selectUser(index) {

@@ -218,9 +218,18 @@
                            <p class="margin-auto fw-400 text-dark-75">
                               <%= con.name %>
                            </p>
-                           <div class="d-flex flex-row mt-1">
+                           <div
+                              class="d-flex flex-row mt-1"
+                              id="last-con-<%= con._id %>"
+                           >
+                              <% if(con.lastMessage?.senderId?.equals(user._id))
+                              { %>
+                              <span class="fw-400 fs-13 mr-1 u-chat"
+                                 >Bạn:
+                              </span>
+                              <% } %>
                               <span
-                                 class="message-shortcut margin-auto fw-400 fs-13 mr-4"
+                                 class="message-shortcut margin-auto fw-400 fs-13 mr-4 last-message"
                                  ><%= lastMessage %></span
                               >
                            </div>
@@ -241,9 +250,22 @@
                            <p class="margin-auto fw-400 text-dark-75">
                               <%= otherMember[0].username %>
                            </p>
-                           <div class="d-flex flex-row mt-1">
+                           <div
+                              class="d-flex flex-row mt-1"
+                              id="last-con-<%= con._id %>"
+                           >
+                              <% if(con.lastMessage?.senderId?.equals(user._id))
+                              { %>
+                              <span class="fw-400 fs-13 mr-1 u-chat"
+                                 >Bạn:
+                              </span>
+                              <% } else { %>
+                              <span class="fw-400 fs-13 mr-1 u-chat"
+                                 ><%= otherMember[0].username %>:
+                              </span>
+                              <% } %>
                               <span
-                                 class="message-shortcut margin-auto fw-400 fs-13 mr-4"
+                                 class="message-shortcut margin-auto fw-400 fs-13 mr-4 last-message"
                                  ><%= lastMessage %></span
                               >
                            </div>

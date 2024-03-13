@@ -956,3 +956,7 @@ img.shadow {
 .emojionearea.focused{
   box-shadow: unset;
 }
+
+.chat.chat-panel .right-chat-message:hover .message-time.time-option{
+  left: -55px 
+}

@@ -11,6 +11,10 @@ const MessageSchema = new mongoose.Schema(
       message: {
          type: String,
       },
+      isRecalled: {
+         type: Boolean,
+         default: false, // Mặc định là false, tức là tin nhắn chưa được thu hồi
+      },
    },
    { timestamps: true }
 );

@@ -72,6 +72,7 @@ unp.on("connection", async (socket) => {
 
    socket.broadcast.emit("getOnlineUser", { user_id: userId });
 
+   socket.emit("createRoom");
    socket.on("disconnect", async () => {
       await User.findByIdAndUpdate(
          { _id: userId },
@@ -86,6 +87,7 @@ unp.on("connection", async (socket) => {
    });
 
    socket.on("joinRoom", async (data) => {
+      console.log("join ", data);
       socket.join(data);
    });
 
